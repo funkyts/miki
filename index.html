@@ -1,0 +1,3133 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>고스카 키오스크 - 500만원짜리 키오스크가 지금은 0원!</title>
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+
+
+        body {
+
+            font-family: 'Noto Sans KR', Arial, sans-serif;
+
+            line-height: 1.6;
+
+            color: #333;
+
+            overflow-x: hidden;
+
+        }
+
+
+
+        .container {
+
+            max-width: 1200px;
+
+            margin: 0 auto;
+
+            padding: 0 20px;
+
+        }
+
+
+
+        /* 애니메이션 정의 */
+
+        @keyframes fadeInUp {
+
+            from {
+
+                opacity: 0;
+
+                transform: translateY(30px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: translateY(0);
+
+            }
+
+        }
+
+
+
+        @keyframes slideInLeft {
+
+            from {
+
+                opacity: 0;
+
+                transform: translateX(-50px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: translateX(0);
+
+            }
+
+        }
+
+
+
+        @keyframes slideInRight {
+
+            from {
+
+                opacity: 0;
+
+                transform: translateX(50px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: translateX(0);
+
+            }
+
+        }
+
+
+
+        @keyframes pulse {
+
+            0% { transform: scale(1); }
+
+            50% { transform: scale(1.05); }
+
+            100% { transform: scale(1); }
+
+        }
+
+
+
+        @keyframes bounce {
+
+            0%, 20%, 50%, 80%, 100% {
+
+                transform: translateY(0);
+
+            }
+
+            40% {
+
+                transform: translateY(-10px);
+
+            }
+
+            60% {
+
+                transform: translateY(-5px);
+
+            }
+
+        }
+
+
+
+        @keyframes glow {
+
+            0% { box-shadow: 0 0 20px rgba(52, 152, 219, 0.3); }
+
+            50% { box-shadow: 0 0 30px rgba(52, 152, 219, 0.6); }
+
+            100% { box-shadow: 0 0 20px rgba(52, 152, 219, 0.3); }
+
+        }
+
+
+
+        /* 히어로 섹션 */
+
+        .hero {
+
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 50%, #1e3c72 100%);
+
+            color: white;
+
+            padding: 100px 0;
+
+            text-align: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+
+        .hero::before {
+
+            content: '';
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            right: 0;
+
+            bottom: 0;
+
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="10" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="10" cy="90" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+
+            animation: float 10s ease-in-out infinite;
+
+        }
+
+
+
+        @keyframes float {
+
+            0%, 100% { transform: translateY(0px); }
+
+            50% { transform: translateY(-20px); }
+
+        }
+
+
+
+        .hero h1 {
+
+            font-size: 3.5rem;
+
+            font-weight: bold;
+
+            margin-bottom: 20px;
+
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+
+            animation: fadeInUp 1s ease-out;
+
+        }
+
+
+
+        .hero .price-highlight {
+
+            font-size: 2rem;
+
+            margin: 20px 0;
+
+            background: rgba(255,255,255,0.15);
+
+            padding: 20px 40px;
+
+            border-radius: 50px;
+
+            display: inline-block;
+
+            backdrop-filter: blur(10px);
+
+            border: 1px solid rgba(255,255,255,0.2);
+
+            animation: fadeInUp 1s ease-out 0.2s both;
+
+        }
+
+
+
+        .hero .subtitle {
+
+            font-size: 1.3rem;
+
+            margin-bottom: 40px;
+
+            opacity: 0.9;
+
+            animation: fadeInUp 1s ease-out 0.4s both;
+
+        }
+
+
+
+        .hero-image {
+
+            width: 100%;
+
+            max-width: 600px;
+
+            height: 300px;
+
+            background: rgba(255,255,255,0.1);
+
+            border-radius: 15px;
+
+            margin: 30px auto;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 1.2rem;
+
+            backdrop-filter: blur(10px);
+
+            border: 1px solid rgba(255,255,255,0.2);
+
+            animation: fadeInUp 1s ease-out 0.6s both;
+
+        }
+
+
+
+        .cta-button {
+
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+
+            color: white;
+
+            padding: 20px 40px;
+
+            font-size: 1.2rem;
+
+            border: none;
+
+            border-radius: 50px;
+
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+
+            text-decoration: none;
+
+            display: inline-block;
+
+            font-weight: bold;
+
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
+
+            animation: bounce 2s infinite;
+
+        }
+
+
+
+        .cta-button:hover {
+
+            transform: translateY(-3px) scale(1.05);
+
+            box-shadow: 0 15px 35px rgba(231, 76, 60, 0.4);
+
+            animation: glow 1.5s infinite;
+
+        }
+
+
+
+        /* 실시간 상담 현황 */
+
+        .consultation-status {
+
+            background: linear-gradient(135deg, #ecf0f1 0%, #bdc3c7 100%);
+
+            padding: 80px 0;
+
+        }
+
+
+
+        .status-alert {
+
+            background: white;
+
+            border-left: 5px solid #3498db;
+
+            padding: 30px;
+
+            margin-bottom: 30px;
+
+            border-radius: 15px;
+
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.1);
+
+            animation: slideInLeft 1s ease-out;
+
+        }
+
+
+
+        .status-alert h2 {
+
+            color: #2980b9;
+
+            font-size: 2rem;
+
+            margin-bottom: 20px;
+
+        }
+
+
+
+        .status-item {
+
+            background: linear-gradient(135deg, #e8f4fd 0%, #d6eaf8 100%);
+
+            padding: 20px;
+
+            margin: 15px 0;
+
+            border-radius: 12px;
+
+            border-left: 4px solid #3498db;
+
+            transition: all 0.4s ease;
+
+            animation: slideInRight 0.6s ease-out;
+
+        }
+
+
+
+        .status-item:hover {
+
+            transform: translateX(10px) scale(1.02);
+
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.2);
+
+            background: linear-gradient(135deg, #d6eaf8 0%, #aed6f1 100%);
+
+        }
+
+
+
+        /* 상담 후기 */
+
+        .reviews {
+
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+
+            padding: 80px 0;
+
+        }
+
+
+
+        .reviews h2 {
+
+            text-align: center;
+
+            font-size: 2.8rem;
+
+            margin-bottom: 50px;
+
+            color: #2c3e50;
+
+            animation: fadeInUp 1s ease-out;
+
+        }
+
+
+
+        .review-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+
+            gap: 30px;
+
+            margin-top: 40px;
+
+        }
+
+
+
+        .review-card {
+
+            background: linear-gradient(135deg, #ffffff 0%, #f1f8ff 100%);
+
+            padding: 30px;
+
+            border-radius: 20px;
+
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.1);
+
+            transition: all 0.4s ease;
+
+            border: 1px solid rgba(52, 152, 219, 0.1);
+
+            animation: fadeInUp 0.8s ease-out;
+
+        }
+
+
+
+        .review-card:hover {
+
+            transform: translateY(-10px) rotate(1deg);
+
+            box-shadow: 0 20px 40px rgba(52, 152, 219, 0.2);
+
+            background: linear-gradient(135deg, #f1f8ff 0%, #e8f4fd 100%);
+
+        }
+
+
+
+        .review-card:nth-child(2):hover {
+
+            transform: translateY(-10px) rotate(-1deg);
+
+        }
+
+
+
+        .stars {
+
+            color: #f39c12;
+
+            font-size: 1.5rem;
+
+            margin-bottom: 15px;
+
+            animation: bounce 1s ease-out;
+
+        }
+
+
+
+        .reviewer {
+
+            font-weight: bold;
+
+            color: #2980b9;
+
+            margin-bottom: 15px;
+
+            font-size: 1.1rem;
+
+        }
+
+
+
+        .review-text {
+
+            line-height: 1.7;
+
+            color: #34495e;
+
+        }
+
+
+
+        .review-image {
+
+            width: 100%;
+
+            height: 200px;
+
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+
+            border-radius: 10px;
+
+            margin: 20px 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 1rem;
+
+            color: #1976d2;
+
+            border: 2px dashed #64b5f6;
+
+        }
+
+
+
+        /* Before/After 섹션 */
+
+        .comparison {
+
+            background: linear-gradient(135deg, #5dade2 0%, #3498db 50%, #2980b9 100%);
+
+            padding: 100px 0;
+
+            position: relative;
+
+        }
+
+
+
+        .comparison::before {
+
+            content: '';
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            right: 0;
+
+            bottom: 0;
+
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="0,0 100,0 80,100 0,100" fill="rgba(255,255,255,0.05)"/></svg>');
+
+        }
+
+
+
+        .comparison h2 {
+
+            text-align: center;
+
+            font-size: 2.8rem;
+
+            margin-bottom: 50px;
+
+            color: white;
+
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+
+            animation: fadeInUp 1s ease-out;
+
+        }
+
+
+
+        .compare-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+
+            gap: 40px;
+
+            margin-top: 40px;
+
+        }
+
+
+
+        .compare-card {
+
+            background: rgba(255,255,255,0.95);
+
+            padding: 40px;
+
+            border-radius: 25px;
+
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+
+            backdrop-filter: blur(10px);
+
+            border: 1px solid rgba(255,255,255,0.2);
+
+            transition: all 0.4s ease;
+
+        }
+
+
+
+        .compare-card:hover {
+
+            transform: translateY(-10px) scale(1.02);
+
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+
+        }
+
+
+
+        .compare-card.before {
+
+            animation: slideInLeft 1s ease-out;
+
+        }
+
+
+
+        .compare-card.after {
+
+            animation: slideInRight 1s ease-out;
+
+        }
+
+
+
+        .compare-card h3 {
+
+            font-size: 2rem;
+
+            margin-bottom: 25px;
+
+            text-align: center;
+
+            padding-bottom: 15px;
+
+            border-bottom: 3px solid;
+
+        }
+
+
+
+        .before h3 {
+
+            color: #e74c3c;
+
+            border-bottom-color: #e74c3c;
+
+        }
+
+
+
+        .after h3 {
+
+            color: #27ae60;
+
+            border-bottom-color: #27ae60;
+
+        }
+
+
+
+        .compare-list {
+
+            list-style: none;
+
+        }
+
+
+
+        .compare-list li {
+
+            padding: 15px 0;
+
+            border-bottom: 1px solid #ecf0f1;
+
+            font-size: 1.1rem;
+
+            transition: all 0.3s ease;
+
+        }
+
+
+
+        .compare-list li:hover {
+
+            padding-left: 10px;
+
+            background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.1));
+
+        }
+
+
+
+        .compare-list li:before {
+
+            content: "❌";
+
+            margin-right: 15px;
+
+            font-size: 1.2rem;
+
+        }
+
+
+
+        .after .compare-list li:before {
+
+            content: "✅";
+
+        }
+
+
+
+        .compare-image {
+
+            width: 100%;
+
+            height: 250px;
+
+            background: linear-gradient(135deg, #ecf0f1 0%, #d5dbdb 100%);
+
+            border-radius: 15px;
+
+            margin: 20px 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 1rem;
+
+            color: #7f8c8d;
+
+            border: 2px dashed #bdc3c7;
+
+        }
+
+
+
+        /* 절감 효과 */
+
+        .savings {
+
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #3498db 100%);
+
+            color: white;
+
+            padding: 100px 0;
+
+            text-align: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+
+        .savings::before {
+
+            content: '';
+
+            position: absolute;
+
+            top: -50%;
+
+            left: -50%;
+
+            width: 200%;
+
+            height: 200%;
+
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+
+            background-size: 50px 50px;
+
+            animation: float 20s linear infinite;
+
+        }
+
+
+
+        .savings h2 {
+
+            font-size: 2.8rem;
+
+            margin-bottom: 30px;
+
+            animation: fadeInUp 1s ease-out;
+
+            position: relative;
+
+            z-index: 1;
+
+        }
+
+
+
+        .savings-amount {
+
+            font-size: 5rem;
+
+            font-weight: bold;
+
+            color: #f1c40f;
+
+            margin: 30px 0;
+
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+
+            animation: bounce 2s infinite;
+
+            position: relative;
+
+            z-index: 1;
+
+        }
+
+
+
+        .savings-breakdown {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+            gap: 30px;
+
+            margin-top: 50px;
+
+        }
+
+
+
+        .savings-item {
+
+            background: rgba(255,255,255,0.1);
+
+            padding: 40px 30px;
+
+            border-radius: 20px;
+
+            backdrop-filter: blur(10px);
+
+            border: 1px solid rgba(255,255,255,0.2);
+
+            transition: all 0.4s ease;
+
+            animation: fadeInUp 0.8s ease-out;
+
+        }
+
+
+
+        .savings-item:hover {
+
+            transform: translateY(-10px) scale(1.05);
+
+            background: rgba(255,255,255,0.2);
+
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+
+        }
+
+
+
+        .savings-item h4 {
+
+            font-size: 1.3rem;
+
+            margin-bottom: 15px;
+
+            color: #ecf0f1;
+
+        }
+
+
+
+        .savings-image {
+
+            width: 100%;
+
+            height: 300px;
+
+            background: rgba(255,255,255,0.1);
+
+            border-radius: 15px;
+
+            margin: 40px auto;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 1.2rem;
+
+            backdrop-filter: blur(10px);
+
+            border: 1px solid rgba(255,255,255,0.2);
+
+            position: relative;
+
+            z-index: 1;
+
+        }
+
+
+
+        /* 만족도 섹션 */
+
+        .satisfaction {
+
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+
+            padding: 100px 0;
+
+        }
+
+
+
+        .satisfaction h2 {
+
+            text-align: center;
+
+            font-size: 2.8rem;
+
+            margin-bottom: 30px;
+
+            color: #2c3e50;
+
+            animation: fadeInUp 1s ease-out;
+
+        }
+
+
+
+        .satisfaction-subtitle {
+
+            text-align: center;
+
+            font-size: 1.3rem;
+
+            color: #7f8c8d;
+
+            margin-bottom: 50px;
+
+            animation: fadeInUp 1s ease-out 0.2s both;
+
+        }
+
+
+
+        .satisfaction-features {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+            gap: 30px;
+
+            margin: 50px 0;
+
+        }
+
+
+
+        .feature-card {
+
+            background: linear-gradient(135deg, #ffffff 0%, #f1f8ff 100%);
+
+            padding: 40px 30px;
+
+            border-radius: 20px;
+
+            text-align: center;
+
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.1);
+
+            border: 1px solid rgba(52, 152, 219, 0.1);
+
+            transition: all 0.4s ease;
+
+            animation: fadeInUp 0.8s ease-out;
+
+        }
+
+
+
+        .feature-card:hover {
+
+            transform: translateY(-15px);
+
+            box-shadow: 0 20px 40px rgba(52, 152, 219, 0.2);
+
+            background: linear-gradient(135deg, #f1f8ff 0%, #e8f4fd 100%);
+
+        }
+
+
+
+        .feature-icon {
+
+            font-size: 3rem;
+
+            margin-bottom: 20px;
+
+            animation: bounce 1s ease-out;
+
+        }
+
+
+
+        .feature-title {
+
+            font-size: 1.4rem;
+
+            font-weight: bold;
+
+            color: #2980b9;
+
+            margin-bottom: 15px;
+
+        }
+
+
+
+        .feature-description {
+
+            color: #34495e;
+
+            line-height: 1.6;
+
+        }
+
+
+
+        .satisfaction-image {
+
+            width: 100%;
+
+            height: 350px;
+
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+
+            border-radius: 20px;
+
+            margin: 40px 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 1.2rem;
+
+            color: #1976d2;
+
+            border: 2px dashed #64b5f6;
+
+        }
+
+
+
+        /* 질문 폼 */
+
+        .question-form {
+
+            background: linear-gradient(135deg, #5dade2 0%, #3498db 50%, #2980b9 100%);
+
+            padding: 100px 0;
+
+            color: white;
+
+            position: relative;
+
+        }
+
+
+
+        .form-container {
+
+            max-width: 800px;
+
+            margin: 0 auto;
+
+            background: rgba(255,255,255,0.1);
+
+            padding: 50px;
+
+            border-radius: 25px;
+
+            backdrop-filter: blur(15px);
+
+            border: 1px solid rgba(255,255,255,0.2);
+
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+
+            animation: fadeInUp 1s ease-out;
+
+        }
+
+
+
+        .form-step {
+
+            display: none;
+
+            text-align: center;
+
+            animation: fadeInUp 0.6s ease-out;
+
+        }
+
+
+
+        .form-step.active {
+
+            display: block;
+
+        }
+
+
+
+        .form-step h3 {
+
+            font-size: 2.2rem;
+
+            margin-bottom: 30px;
+
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+
+        }
+
+
+
+        .form-options {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+            gap: 20px;
+
+            margin: 40px 0;
+
+        }
+
+
+
+        .form-option {
+
+            background: rgba(255,255,255,0.2);
+
+            padding: 25px 20px;
+
+            border-radius: 15px;
+
+            border: 2px solid transparent;
+
+            cursor: pointer;
+
+            transition: all 0.4s ease;
+
+            backdrop-filter: blur(10px);
+
+            font-weight: 500;
+
+        }
+
+
+
+        .form-option:hover {
+
+            background: rgba(255,255,255,0.3);
+
+            border-color: rgba(255,255,255,0.6);
+
+            transform: translateY(-5px) scale(1.02);
+
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+
+        }
+
+
+
+        .form-option.selected {
+
+            background: rgba(255,255,255,0.4);
+
+            border-color: #fff;
+
+            transform: translateY(-3px);
+
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+
+        }
+
+
+
+        .form-input {
+
+            width: 100%;
+
+            padding: 20px;
+
+            font-size: 1.1rem;
+
+            border: none;
+
+            border-radius: 15px;
+
+            margin: 20px 0;
+
+            background: rgba(255,255,255,0.9);
+
+            transition: all 0.3s ease;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+
+        }
+
+
+
+        .form-input:focus {
+
+            outline: none;
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+
+        }
+
+
+
+        .dropdown {
+
+            position: relative;
+
+            width: 100%;
+
+        }
+
+
+
+        .dropdown-selected {
+
+            background: rgba(210,210,210,0.9);
+
+            padding: 20px;
+
+            border-radius: 15px;
+
+            cursor: pointer;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            transition: all 0.3s ease;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+
+        }
+
+
+
+        .dropdown-selected:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+
+        }
+
+
+
+        .dropdown-options {
+
+            position: absolute;
+
+            top: 100%;
+
+            left: 0;
+
+            right: 0;
+
+            background: white;
+
+            border-radius: 15px;
+
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+
+            max-height: 300px;
+
+            overflow-y: auto;
+
+            z-index: 1000;
+
+            display: none;
+
+            animation: slideInRight 0.3s ease-out;
+
+        }
+
+
+
+        .dropdown-options.show {
+
+            display: block;
+
+        }
+
+
+
+        .dropdown-option {
+
+            padding: 20px;
+
+            cursor: pointer;
+
+            color: #333;
+
+            border-bottom: 1px solid #ecf0f1;
+
+            transition: all 0.3s ease;
+
+        }
+
+
+
+        .dropdown-option:hover {
+
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+
+            transform: translateX(5px);
+
+        }
+
+
+
+        .dropdown-option:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+
+        .form-button {
+
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+
+            color: white;
+
+            padding: 18px 35px;
+
+            border: none;
+
+            border-radius: 15px;
+
+            font-size: 1.1rem;
+
+            cursor: pointer;
+
+            margin: 20px 10px;
+
+            transition: all 0.4s ease;
+
+            font-weight: bold;
+
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
+
+        }
+
+
+
+        .form-button:hover {
+
+            transform: translateY(-3px) scale(1.05);
+
+            box-shadow: 0 12px 30px rgba(231, 76, 60, 0.4);
+
+            animation: glow 1s infinite;
+
+        }
+
+
+
+        .form-button:disabled {
+
+            background: #95a5a6;
+
+            cursor: not-allowed;
+
+            transform: none;
+
+            box-shadow: none;
+
+            animation: none;
+
+        }
+
+
+
+        /* 플로팅 버튼 */
+
+        .floating-button {
+
+            position: fixed;
+
+            bottom: 30px;
+
+            right: 30px;
+
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+
+            color: white;
+
+            padding: 20px 25px;
+
+            border-radius: 50px;
+
+            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.4);
+
+            cursor: pointer;
+
+            z-index: 1000;
+
+            animation: pulse 2s infinite;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            font-size: 1.1rem;
+
+            transition: all 0.3s ease;
+
+        }
+
+
+
+        .floating-button:hover {
+
+            transform: scale(1.1);
+
+            box-shadow: 0 15px 35px rgba(231, 76, 60, 0.5);
+
+            animation: bounce 0.6s ease-out;
+
+        }
+
+
+
+        /* 팝업 */
+
+        .popup {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            right: 0;
+
+            bottom: 0;
+
+            background: rgba(0,0,0,0.8);
+
+            display: none;
+
+            justify-content: center;
+
+            align-items: center;
+
+            z-index: 2000;
+
+            animation: fadeInUp 0.4s ease-out;
+
+        }
+
+
+
+        .popup-content {
+
+            background: linear-gradient(135deg, #ffffff 0%, #f1f8ff 100%);
+
+            padding: 50px;
+
+            border-radius: 25px;
+
+            text-align: center;
+
+            max-width: 500px;
+
+            margin: 20px;
+
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+
+            animation: bounce 0.6s ease-out;
+
+        }
+
+
+
+        .popup-content h3 {
+
+            color: #27ae60;
+
+            font-size: 2rem;
+
+            margin-bottom: 20px;
+
+        }
+
+
+
+        .popup-content p {
+
+            color: #34495e;
+
+            font-size: 1.2rem;
+
+            margin-bottom: 30px;
+
+        }
+
+
+
+        /* 반응형 */
+
+        @media (max-width: 768px) {
+
+            .hero h1 {
+
+                font-size: 2.5rem;
+
+            }
+
+            
+
+            .hero .price-highlight {
+
+                font-size: 1.5rem;
+
+                padding: 15px 25px;
+
+            }
+
+            
+
+            .compare-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            
+
+            .form-options {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            
+
+            .floating-button {
+
+                bottom: 20px;
+
+                right: 20px;
+
+                padding: 15px 20px;
+
+                font-size: 1rem;
+
+            }
+
+
+
+            .savings-amount {
+
+                font-size: 3.5rem;
+
+            }
+
+
+
+            .form-container {
+
+                padding: 30px 25px;
+
+            }
+
+        }
+
+
+
+        /* 스크롤 애니메이션 */
+
+        .scroll-reveal {
+
+            opacity: 0;
+
+            transform: translateY(50px);
+
+            transition: all 0.8s ease-out;
+
+        }
+
+
+
+        .scroll-reveal.revealed {
+
+            opacity: 1;
+
+            transform: translateY(0);
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- 히어로 섹션 -->
+
+    <section class="hero">
+
+        <div class="container">
+
+            <h1>💰 500만원짜리 키오스크? 이제는 0원!</h1>
+
+            <div class="price-highlight">
+
+                평균 도입비 500만원 이상 → 고스카는 290만원 → <strong>지금은 무료!</strong>
+
+            </div>
+
+            <p class="subtitle">
+
+                🎯 월 유지비 55,000원(VAT 포함), 알림톡 발송비도 최저가<br>
+
+                ⏰ 놓치면 다시 없는 한정 혜택을 바로 신청하세요
+
+            </p><br>
+
+            <div class="hero-image">
+
+                <!-- 이미지 배치 1: 히어로 키오스크 이미지 -->
+
+                <img src="https://secondlifesalon.com/wp-content/uploads/2025/08/히어로섹션.png" alt="고스카 키오스크 메인" style="width: 100%; height: 130%; object-fit: cover; border-radius: 15px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+                <div style="display: none; width: 100%; height: 100%; align-items: center; justify-content: center; font-size: 1.2rem; color: rgba(255,255,255,0.8);">
+
+                    📱 히어로 키오스크 이미지 영역
+
+                 
+
+                </div>
+
+            </div>
+
+           <br><br> <a href="#consultation" class="cta-button">🚀 지금 무료 업그레이드 신청하기</a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- 실시간 상담 현황 -->
+
+    <section class="consultation-status scroll-reveal">
+
+        <div class="container">
+
+            <div class="status-alert">
+
+                <h2>🔔 실시간 상담 신청 현황</h2>
+
+                <div id="statusList"></div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- 상담 후기 -->
+
+    <section class="reviews scroll-reveal">
+
+        <div class="container">
+
+            <h2>💬 실제 상담 후기</h2>
+
+            <div class="review-grid">
+
+                <div class="review-card">
+
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+
+                    <div class="reviewer">김○○님 (스터디카페 운영)</div>
+
+                    <div class="review-image">
+
+                        <!-- 이미지 배치 2: 리뷰 관련 이미지 -->
+
+                        <img src="https://secondlifesalon.com/wp-content/uploads/2025/08/스터디카페-키오스크.png" alt="스터디카페 키오스크" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+                        <div style="display: none; width: 100%; height: 100%; align-items: center; justify-content: center;">
+
+                            📚 스터디카페 키오스크 사용 이미지
+
+                        </div>
+
+                    </div>
+
+                    <p class="review-text">"기존 키오스크에서 고스카로 바꾼 후 월 유지비가 절반으로 줄었어요! 무인 결제 시스템도 훨씬 안정적이고, 고객들이 사용하기도 편해해요. 진작 바꿀걸 그랬네요!"</p>
+
+                </div>
+
+                <div class="review-card">
+
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+
+                    <div class="reviewer">박○○님 (탁구장 운영)</div>
+
+                    <div class="review-image">
+
+                        <!-- 이미지 배치 3: 리뷰 관련 이미지 -->
+
+                        <img src="https://secondlifesalon.com/wp-content/uploads/2025/08/탁구장-키오스크.png" alt="탁구장 키오스크" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+                        <div style="display: none; width: 100%; height: 100%; align-items: center; justify-content: center;">
+
+                            💪 탁구장 키오스크 사용 이미지
+
+                        </div>
+
+                    </div>
+
+                    <p class="review-text">"다른 업체 견적보다 300만원 저렴하게 나왔는데, 기능은 오히려 더 많아요. IoT 기능으로 냉난방까지 자동 제어되니까 전기요금도 많이 절약되고 있습니다!"</p>
+
+                </div>
+
+                <div class="review-card">
+
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+
+                    <div class="reviewer">이○○님 (학원 운영)</div>
+
+                    <div class="review-image">
+
+                        <!-- 이미지 배치 4: 리뷰 관련 이미지 -->
+
+                        <img src="https://secondlifesalon.com/wp-content/uploads/2025/08/학원-키오스크1.png" alt="학원 키오스크" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+                        <div style="display: none; width: 100%; height: 100%; align-items: center; justify-content: center;">
+
+                            📖 학원 키오스크 사용 이미지
+
+                        </div>
+
+                    </div>
+
+                    <p class="review-text">"처음 키오스크 도입하는데 설치부터 사용법까지 너무 친절하게 설명해주셨어요. 무인 운영이 가능해져서 매출이 30% 늘었어요. 정말 만족합니다!"</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- Before/After 비교 -->
+
+    <section class="comparison scroll-reveal">
+
+        <div class="container">
+
+            <h2>지출은 줄이고, 기능은 계속 진화</h2>
+
+            <div class="compare-grid">
+
+                <div class="compare-card before">
+
+                    <h3>🔴 Before - 기존 키오스크</h3>
+
+                    <div class="compare-image">
+
+                        <!-- 이미지 배치 5: Before 이미지 -->
+
+                        <img src="https://secondlifesalon.com/wp-content/uploads/2025/08/고스카도입전.png" alt="기존 키오스크 문제점" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+                        <div style="display: none; width: 100%; height: 100%; align-items: center; justify-content: center;">
+
+                            ❌ 기존 키오스크의 문제점들
+
+                        </div>
+
+                    </div>
+
+                    <ul class="compare-list">
+
+                        <li>도입비 <strong>500만원↑</strong></li>
+
+                        <li>월 유지비 <strong>110,000원</strong></li>
+
+                        <li>서버 장애 <strong>연 3~5회</strong></li>
+
+                        <li>기능 업데이트? 1년에 한 번 있을까 말까</li>
+
+                        <li>냉난방비·알림톡 발송비까지 부담</li>
+
+                    </ul>
+
+                </div>
+
+                <div class="compare-card after">
+
+                    <h3>🟢 After - 고스카</h3>
+
+                    <div class="compare-image">
+
+                        <!-- 이미지 배치 6: After 이미지 -->
+
+                        <img src="https://secondlifesalon.com/wp-content/uploads/2025/08/고스카도입후.png" alt="고스카 키오스크 장점" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+                        <div style="display: none; width: 100%; height: 100%; align-items: center; justify-content: center;">
+
+                            ✅ 고스카 키오스크의 장점들
+
+                        </div>
+
+                    </div>
+
+                    <ul class="compare-list">
+
+                        <li><strong>도입비 0원</strong> (평균 500만원 이상→ 무료)</li>
+
+                        <li>월 유지비 <strong>55,000원(VAT포함)</strong> → 연 73만원 절감</li>
+
+                        <li>서버 장애 <strong>연 1회 이하</strong> → 업계 최저</li>
+
+                        <li>분기 10건 이상 기능 업데이트 → 매출 고민 즉시 반영</li>
+
+                        <li>IoT 냉난방 제어로 월 15~30만원 절감</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- 절감 효과 -->
+
+    <section class="savings scroll-reveal">
+
+        <div class="container">
+
+            <h2>💎 1년만 써도, 약 5백만원 절약</h2>
+
+            <div class="savings-amount">500만원</div>
+
+            <p style="font-size: 1.3rem;">키오스크는 비용 절감을 위해서 쓰는거니까요! 💪</p>
+
+            
+
+            <div class="savings-image">
+
+                <!-- 이미지 배치 7: 절감 효과 그래프 또는 차트 -->
+
+                <img src="https://secondlifesalon.com/wp-content/uploads/2025/08/키오스크-절약.png" alt="절감 효과 차트" style="width: 100%; height: 100%; object-fit: contain; border-radius: 15px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+                <div style="display: none; width: 100%; height: 100%; align-items: center; justify-content: center;">
+
+                    📊 연간 절감 효과 그래프
+
+                </div>
+
+            </div>
+
+            
+
+            <div class="savings-breakdown">
+
+                <div class="savings-item">
+
+                    <h4>💰 도입비 절감</h4>
+
+                    <p style="font-size: 2rem; font-weight: bold;">500만원</p>
+
+                </div>
+
+                <div class="savings-item">
+
+                    <h4>📉 유지비 절감</h4>
+
+                    <p style="font-size: 2rem; font-weight: bold;">73만원</p>
+
+                </div>
+
+                <div class="savings-item">
+
+                    <h4>🌡️ 냉난방비 절감</h4>
+
+                    <p style="font-size: 1.5rem;">효과는 덤!</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- 점주 만족도 섹션 -->
+
+    <section class="satisfaction scroll-reveal">
+
+        <div class="container">
+
+            <h2>🏆 점주 만족도 99%의 이유</h2>
+
+            <p class="satisfaction-subtitle">키오스크 전문 개발 인력들이 점주들의 피드백을 바탕으로 매일 업그레이드 하는 중입니다.</p>
+
+            
+
+            <div class="satisfaction-features">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">🚀</div>
+
+                    <div class="feature-title">빠른 업데이트</div>
+
+                    <p class="feature-description">매출 고민을 직접 듣고 기능에 반영하는 분기별 10건 이상의 신속한 업데이트</p>
+
+                </div>
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">🛡️</div>
+
+                    <div class="feature-title">AWS 기반 서버 안정성</div>
+
+                    <p class="feature-description">장애율 업계 최저, 안정적인 클라우드 인프라로 365일 24시간 무중단 서비스</p>
+
+                </div>
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">🎯</div>
+
+                    <div class="feature-title">비용 절감 + 매출 향상</div>
+
+                    <p class="feature-description">운영비 절감과 동시에 스마트한 고객 관리로 매출 증대까지 두 마리 토끼 잡기</p>
+
+                </div>
+
+            </div>
+
+           
+
+            <div class="satisfaction-image">
+
+                <!-- 이미지 배치 8: 만족도 관련 이미지 -->
+
+                <img src="https://secondlifesalon.com/wp-content/uploads/2025/08/점주-환호-가로.png" alt="점주 만족도" style="width: 100%; height: 100%; object-fit: contain; border-radius: 20px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+                <div style="display: none; width: 100%; height: 100%; align-items: center; justify-content: center;">
+
+                    😊 점주 만족도 99% 관련 이미지
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- 질문 폼 -->
+
+    <section class="question-form scroll-reveal" id="consultation">
+
+        <div class="container">
+
+            <div class="form-container">
+
+                <form id="consultationForm">
+
+                    <!-- 질문 1: 사장님께서는 -->
+
+                    <div class="form-step active" data-step="1">
+
+                        <h3>1 → 사장님께서는</h3>
+
+                        <p style="font-size: 1.2rem; margin-bottom: 30px;">
+
+                            예비 창업자이신가요?<br>
+
+                            기창업자이신가요? (1/6)*
+
+                        </p>
+
+                        <div class="form-options">
+
+                            <div class="form-option" data-value="예비 창업자">
+
+                                <strong>A</strong> 예비 창업자
+
+                            </div>
+
+                            <div class="form-option" data-value="운영 중">
+
+                                <strong>B</strong> 기창업자
+
+                            </div>
+
+                        </div>
+
+                        <button type="button" class="form-button" onclick="nextStep()" disabled id="step1Next">확인</button>
+
+                    </div>
+
+
+
+                    <!-- 질문 2: 어떤 매장 운영 -->
+
+                    <div class="form-step" data-step="2">
+
+                        <h3>2 → 어떤 업종이신가요? (2/6)*</h3>
+
+                        <div class="dropdown">
+
+                            <div class="dropdown-selected" onclick="toggleDropdown()">
+
+                                <span id="selectedBusiness">업종을 선택해주세요</span>
+
+                                <span>▼</span>
+
+                            </div>
+
+                            <div class="dropdown-options" id="businessOptions">
+
+                                <div class="dropdown-option" data-value="스터디카페">A. 스터디카페</div>
+
+                                <div class="dropdown-option" data-value="독서실">B. 독서실</div>
+
+                                <div class="dropdown-option" data-value="탁구장">C. 탁구장</div>
+
+                                <div class="dropdown-option" data-value="공유오피스">D. 공유오피스</div>
+
+                                <div class="dropdown-option" data-value="헬스/필라테스/요가">E. 헬스/필라테스/요가</div>
+
+                                <div class="dropdown-option" data-value="태닝샵">F. 태닝샵</div>
+
+                                <div class="dropdown-option" data-value="실내 체육 시설">G. 실내 체육 시설 </div>
+
+                                <div class="dropdown-option" data-value="보드게임카페">H. 보드게임카페</div>                       
+
+                                <div class="dropdown-option" data-value="예약 기반 매장">J. 예약 기반 매장 (연습실,스튜디오,파티룸)</div>
+
+                                <div class="dropdown-option" data-value="기타">K. 기타</div>
+
+                            </div>
+
+                        </div>
+
+                        <button type="button" class="form-button" onclick="nextStep()" disabled id="step2Next">확인</button>
+
+                    </div>
+
+
+
+                    <!-- 질문 3: 이메일 -->
+
+                    <div class="form-step" data-step="3">
+
+                        <h3>3 → 상세 안내 받으실 이메일을 적어주세요 (3/6)*</h3>
+
+                        <p style="margin-bottom: 20px;">신청 완료 후 이메일을 확인해주세요.</p>
+
+                        <input type="email" class="form-input" placeholder="somebody@example.com" id="emailInput" required>
+
+                        <button type="button" class="form-button" onclick="nextStep()" disabled id="step3Next">확인</button>
+
+                    </div>
+
+
+
+                    <!-- 질문 4: 연락 가능한 핸드폰 번호 -->
+
+                    <div class="form-step" data-step="4">
+
+                        <h3>4 → 연락처를 적어주세요 (4/6)*</h3>
+
+                        <div style="display: flex; align-items: center; gap: 15px; margin: 20px 0;">
+
+                            <span style="background: rgba(255,255,255,0.9); padding: 20px; border-radius: 15px; color: #333; font-weight: bold;">🇰🇷 ▼</span>
+
+                            <input type="tel" class="form-input" placeholder="010-2000-0000" id="phoneInput" style="flex: 1; margin: 0;" required>
+
+                        </div>
+
+                        <button type="button" class="form-button" onclick="nextStep()" disabled id="step4Next">확인</button>
+
+                    </div>
+
+
+
+                    <!-- 질문 5: 현재 상황 -->
+
+                    <div class="form-step" data-step="5">
+
+                        <h3>5 → 현재 상황을 선택해주세요 (5/6)*</h3>
+
+                        <div class="form-options">
+
+                            <div class="form-option" data-value="키오스크를 처음 도입하려고 해요">키오스크를 처음 도입하려고 해요</div>
+
+                            <div class="form-option" data-value="다른 키오스크에서 고스카로 바꾸려고 해요">다른 키오스크에서 고스카로 바꾸려고 해요</div>
+
+                            <div class="form-option" data-value="아직 고민 중이에요">아직 고민 중이에요</div>
+
+                        </div>
+
+                        <button type="button" class="form-button" onclick="nextStep()" disabled id="step5Next">확인</button>
+
+                    </div>
+
+
+
+                    <!-- 질문 6: 궁금한 점 -->
+
+                    <div class="form-step" data-step="6">
+
+                        <h3>6 → 다른 궁금한 사항 있으시면 적어주세요</h3>
+
+                        <p style="margin-bottom: 20px;">자세한 답변을 드릴 수 있도록 준비하겠습니다.</p>
+
+                        <textarea class="form-input" placeholder="여기에 입력하십시오..." rows="5" id="questionInput"></textarea>
+
+                        <p style="font-size: 0.9rem; margin: 20px 0; opacity: 0.8;">단락을 추가하려면 Shift ⇧ + Enter ↵를 누릅니다.</p>
+
+                        <button type="button" class="form-button" onclick="submitForm()">제출</button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- 플로팅 버튼 -->
+
+    <a href="#consultation" class="floating-button">
+
+        🚀 지금 바로 무료 지원 신청하기
+
+    </a>
+
+
+
+    <!-- 팝업 -->
+
+    <div class="popup" id="successPopup">
+
+        <div class="popup-content">
+
+            <h3>✅ 신청이 완료되었습니다!</h3>
+
+            <p>순차적으로 최대한 빠르게 안내드리겠습니다!</p>
+
+            <button class="form-button" onclick="closePopup()">확인</button>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        // 실시간 상담 신청 현황 데이터 (40개 랜덤 데이터)
+
+        const consultationData = [
+
+            { time: "3분 전", name: "신○○님", phone: "010-****-2847", message: "상담을 신청했습니다." },
+
+            { time: "6분 전", name: "김○○님", phone: "010-****-9135", message: "상담을 신청했습니다." },
+
+            { time: "9분 전", name: "박○○님", phone: "010-****-5269", message: "상담을 신청했습니다." },
+
+            { time: "12분 전", name: "이○○님", phone: "010-****-7384", message: "상담을 신청했습니다." },
+
+            { time: "15분 전", name: "최○○님", phone: "010-****-1596", message: "상담을 신청했습니다." },
+
+            { time: "18분 전", name: "정○○님", phone: "010-****-8027", message: "상담을 신청했습니다." },
+
+            { time: "22분 전", name: "강○○님", phone: "010-****-4651", message: "상담을 신청했습니다." },
+
+            { time: "25분 전", name: "조○○님", phone: "010-****-3798", message: "상담을 신청했습니다." },
+
+            { time: "28분 전", name: "윤○○님", phone: "010-****-9462", message: "상담을 신청했습니다." },
+
+            { time: "31분 전", name: "장○○님", phone: "010-****-5174", message: "상담을 신청했습니다." },
+
+            { time: "35분 전", name: "임○○님", phone: "010-****-2683", message: "상담을 신청했습니다." },
+
+            { time: "38분 전", name: "한○○님", phone: "010-****-7951", message: "상담을 신청했습니다." },
+
+            { time: "42분 전", name: "오○○님", phone: "010-****-4316", message: "상담을 신청했습니다." },
+
+            { time: "45분 전", name: "서○○님", phone: "010-****-8529", message: "상담을 신청했습니다." },
+
+            { time: "48분 전", name: "안○○님", phone: "010-****-1746", message: "상담을 신청했습니다." },
+
+            { time: "52분 전", name: "홍○○님", phone: "010-****-6082", message: "상담을 신청했습니다." },
+
+            { time: "55분 전", name: "유○○님", phone: "010-****-3597", message: "상담을 신청했습니다." },
+
+            { time: "58분 전", name: "송○○님", phone: "010-****-9124", message: "상담을 신청했습니다." },
+
+            { time: "1시간 2분 전", name: "배○○님", phone: "010-****-5468", message: "상담을 신청했습니다." },
+
+            { time: "1시간 5분 전", name: "남○○님", phone: "010-****-7831", message: "상담을 신청했습니다." },
+
+            { time: "1시간 8분 전", name: "구○○님", phone: "010-****-2079", message: "상담을 신청했습니다." },
+
+            { time: "1시간 12분 전", name: "문○○님", phone: "010-****-6435", message: "상담을 신청했습니다." },
+
+            { time: "1시간 15분 전", name: "노○○님", phone: "010-****-8926", message: "상담을 신청했습니다." },
+
+            { time: "1시간 18분 전", name: "전○○님", phone: "010-****-1573", message: "상담을 신청했습니다." },
+
+            { time: "1시간 22분 전", name: "황○○님", phone: "010-****-4287", message: "상담을 신청했습니다." },
+
+            { time: "1시간 25분 전", name: "민○○님", phone: "010-****-7649", message: "상담을 신청했습니다." },
+
+            { time: "1시간 28분 전", name: "성○○님", phone: "010-****-3051", message: "상담을 신청했습니다." },
+
+            { time: "1시간 32분 전", name: "권○○님", phone: "010-****-8417", message: "상담을 신청했습니다." },
+
+            { time: "1시간 35분 전", name: "백○○님", phone: "010-****-5962", message: "상담을 신청했습니다." },
+
+            { time: "1시간 38분 전", name: "류○○님", phone: "010-****-2378", message: "상담을 신청했습니다." },
+
+            { time: "1시간 42분 전", name: "진○○님", phone: "010-****-7104", message: "상담을 신청했습니다." },
+
+            { time: "1시간 45분 전", name: "곽○○님", phone: "010-****-4681", message: "상담을 신청했습니다." },
+
+            { time: "1시간 48분 전", name: "심○○님", phone: "010-****-9235", message: "상담을 신청했습니다." },
+
+            { time: "1시간 52분 전", name: "마○○님", phone: "010-****-1759", message: "상담을 신청했습니다." },
+
+            { time: "1시간 55분 전", name: "원○○님", phone: "010-****-6284", message: "상담을 신청했습니다." },
+
+            { time: "1시간 58분 전", name: "소○○님", phone: "010-****-3907", message: "상담을 신청했습니다." },
+
+            { time: "2시간 2분 전", name: "석○○님", phone: "010-****-8462", message: "상담을 신청했습니다." },
+
+            { time: "2시간 5분 전", name: "선○○님", phone: "010-****-5138", message: "상담을 신청했습니다." },
+
+            { time: "2시간 8분 전", name: "설○○님", phone: "010-****-2694", message: "상담을 신청했습니다." },
+
+            { time: "2시간 12분 전", name: "손○○님", phone: "010-****-7520", message: "상담을 신청했습니다." }
+
+        ];
+
+
+
+        let currentDataIndex = 0;
+
+        let currentStep = 1;
+
+        let formData = {};
+
+
+
+        // 실시간 상담 현황 업데이트
+
+        function updateConsultationStatus() {
+
+            const statusList = document.getElementById('statusList');
+
+            const currentData = consultationData.slice(currentDataIndex, currentDataIndex + 5);
+
+            
+
+            statusList.innerHTML = '';
+
+            currentData.forEach((item, index) => {
+
+                const statusItem = document.createElement('div');
+
+                statusItem.className = 'status-item';
+
+                statusItem.style.animationDelay = `${index * 0.1}s`;
+
+                statusItem.innerHTML = `
+
+                    <strong>${item.time}</strong> ${item.name} (${item.phone})이 ${item.message}
+
+                `;
+
+                statusList.appendChild(statusItem);
+
+            });
+
+            
+
+            currentDataIndex = (currentDataIndex + 1) % (consultationData.length - 4);
+
+        }
+
+
+
+        // 5초마다 업데이트
+
+        setInterval(updateConsultationStatus, 5000);
+
+        updateConsultationStatus(); // 초기 로드
+
+
+
+        // 스크롤 애니메이션
+
+        function observeElements() {
+
+            const elements = document.querySelectorAll('.scroll-reveal');
+
+            const observer = new IntersectionObserver((entries) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add('revealed');
+
+                    }
+
+                });
+
+            }, { threshold: 0.1 });
+
+
+
+            elements.forEach(element => {
+
+                observer.observe(element);
+
+            });
+
+        }
+
+
+
+        // 드롭다운 토글
+
+        function toggleDropdown() {
+
+            const options = document.getElementById('businessOptions');
+
+            options.classList.toggle('show');
+
+        }
+
+
+
+        // 드롭다운 옵션 선택
+
+        document.querySelectorAll('.dropdown-option').forEach(option => {
+
+            option.addEventListener('click', function() {
+
+                const selectedText = this.textContent;
+
+                const selectedValue = this.dataset.value;
+
+                
+
+                document.getElementById('selectedBusiness').textContent = selectedText;
+
+                document.getElementById('businessOptions').classList.remove('show');
+
+                
+
+                formData.business = selectedValue;
+
+                document.getElementById('step2Next').disabled = false;
+
+            });
+
+        });
+
+
+
+        // 폼 옵션 선택
+
+        document.querySelectorAll('.form-option').forEach(option => {
+
+            option.addEventListener('click', function() {
+
+                // 같은 스텝의 다른 옵션들 선택 해제
+
+                const currentStepElement = this.closest('.form-step');
+
+                currentStepElement.querySelectorAll('.form-option').forEach(opt => {
+
+                    opt.classList.remove('selected');
+
+                });
+
+                
+
+                // 현재 옵션 선택
+
+                this.classList.add('selected');
+
+                
+
+                // 현재 스텝에 따라 데이터 저장
+
+                const step = currentStepElement.dataset.step;
+
+                const value = this.dataset.value;
+
+                
+
+                if (step === '1') {
+
+                    formData.ownerType = value;
+
+                    document.getElementById('step1Next').disabled = false;
+
+                } else if (step === '5') {
+
+                    formData.currentSituation = value;
+
+                    document.getElementById('step5Next').disabled = false;
+
+                }
+
+            });
+
+        });
+
+
+
+        // 이메일 입력 검증
+
+        document.getElementById('emailInput').addEventListener('input', function() {
+
+            const email = this.value;
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            
+
+            if (emailRegex.test(email)) {
+
+                formData.email = email;
+
+                document.getElementById('step3Next').disabled = false;
+
+            } else {
+
+                document.getElementById('step3Next').disabled = true;
+
+            }
+
+        });
+
+
+
+        // 전화번호 입력 검증
+
+        document.getElementById('phoneInput').addEventListener('input', function() {
+
+            let phone = this.value.replace(/[^0-9]/g, '');
+
+            
+
+            // 자동 하이픈 추가
+
+            if (phone.length > 3 && phone.length <= 7) {
+
+                phone = phone.slice(0, 3) + '-' + phone.slice(3);
+
+            } else if (phone.length > 7) {
+
+                phone = phone.slice(0, 3) + '-' + phone.slice(3, 7) + '-' + phone.slice(7, 11);
+
+            }
+
+            
+
+            this.value = phone;
+
+            
+
+            if (phone.replace(/-/g, '').length === 11) {
+
+                formData.phone = phone;
+
+                document.getElementById('step4Next').disabled = false;
+
+            } else {
+
+                document.getElementById('step4Next').disabled = true;
+
+            }
+
+        });
+
+
+
+        // 다음 단계로 이동
+
+        function nextStep() {
+
+            document.querySelector(`[data-step="${currentStep}"]`).classList.remove('active');
+
+            currentStep++;
+
+            document.querySelector(`[data-step="${currentStep}"]`).classList.add('active');
+
+        }
+
+
+
+        // 폼 제출
+
+        function submitForm() {
+
+            formData.question = document.getElementById('questionInput').value;
+
+            formData.timestamp = new Date().toISOString();
+
+            
+
+            // 구글 스프레드시트로 데이터 전송
+
+            sendToGoogleSheets(formData);
+
+            
+
+            // 성공 팝업 표시
+
+            document.getElementById('successPopup').style.display = 'flex';
+
+        }
+
+
+
+        // 구글 스프레드시트로 데이터 전송
+
+        function sendToGoogleSheets(data) {
+
+            // 여기에 실제 구글 스프레드시트 API 연동 코드를 넣으세요
+
+            // Google Apps Script 웹 앱 URL을 사용하는 것을 추천합니다
+
+            
+
+            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzcwetaZvTi-HikLKtqrfmgcnozNDs-FbZ6H-0cmDqTm1efLXMi1sikSD4ApPek711I/exec';
+
+            
+
+            fetch(GOOGLE_SCRIPT_URL, {
+
+                method: 'POST',
+
+                mode: 'no-cors',
+
+                headers: {
+
+                    'Content-Type': 'application/json',
+
+                },
+
+                body: JSON.stringify(data)
+
+            })
+
+            .then(() => {
+
+                console.log('데이터가 구글 스프레드시트로 전송되었습니다.');
+
+            })
+
+            .catch((error) => {
+
+                console.error('데이터 전송 오류:', error);
+
+            });
+
+        }
+
+
+
+        // 팝업 닫기
+
+        function closePopup() {
+
+            document.getElementById('successPopup').style.display = 'none';
+
+            
+
+            // 폼 초기화
+
+            document.getElementById('consultationForm').reset();
+
+            currentStep = 1;
+
+            formData = {};
+
+            
+
+            // 첫 번째 스텝으로 돌아가기
+
+            document.querySelectorAll('.form-step').forEach(step => {
+
+                step.classList.remove('active');
+
+            });
+
+            document.querySelector('[data-step="1"]').classList.add('active');
+
+            
+
+            // 버튼들 비활성화
+
+            document.querySelectorAll('.form-button').forEach(btn => {
+
+                if (btn.onclick && btn.onclick.toString().includes('nextStep')) {
+
+                    btn.disabled = true;
+
+                }
+
+            });
+
+            
+
+            // 드롭다운 초기화
+
+            document.getElementById('selectedBusiness').textContent = '업종을 선택해주세요';
+
+            
+
+            // 선택된 옵션들 초기화
+
+            document.querySelectorAll('.form-option.selected').forEach(option => {
+
+                option.classList.remove('selected');
+
+            });
+
+        }
+
+
+
+        // 외부 클릭시 드롭다운 닫기
+
+        document.addEventListener('click', function(event) {
+
+            const dropdown = document.querySelector('.dropdown');
+
+            if (!dropdown.contains(event.target)) {
+
+                document.getElementById('businessOptions').classList.remove('show');
+
+            }
+
+        });
+
+
+
+        // 스크롤시 플로팅 버튼 애니메이션
+
+        let lastScrollTop = 0;
+
+        window.addEventListener('scroll', function() {
+
+            const st = window.pageYOffset || document.documentElement.scrollTop;
+
+            const floatingBtn = document.querySelector('.floating-button');
+
+            
+
+            if (st > lastScrollTop) {
+
+                // 스크롤 다운
+
+                floatingBtn.style.transform = 'scale(0.9)';
+
+            } else {
+
+                // 스크롤 업
+
+                floatingBtn.style.transform = 'scale(1)';
+
+            }
+
+            lastScrollTop = st <= 0 ? 0 : st;
+
+        });
+
+
+
+        // 부드러운 스크롤
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+            anchor.addEventListener('click', function (e) {
+
+                e.preventDefault();
+
+                const target = document.querySelector(this.getAttribute('href'));
+
+                if (target) {
+
+                    target.scrollIntoView({
+
+                        behavior: 'smooth',
+
+                        block: 'start'
+
+                    });
+
+                }
+
+            });
+
+        });
+
+
+
+        // DOM 로드 완료 후 실행
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            observeElements();
+
+            
+
+            // 초기 애니메이션 트리거
+
+            setTimeout(() => {
+
+                document.querySelector('.hero').style.opacity = '1';
+
+            }, 100);
+
+        });
+
+
+
+        // 마우스 추적 효과 (선택사항)
+
+        document.addEventListener('mousemove', function(e) {
+
+            const mouseX = e.clientX;
+
+            const mouseY = e.clientY;
+
+            
+
+            // 히어로 섹션 패럴렉스 효과
+
+            const hero = document.querySelector('.hero');
+
+            if (hero) {
+
+                const rect = hero.getBoundingClientRect();
+
+                if (rect.top <= 0 && rect.bottom >= 0) {
+
+                    const moveX = (mouseX - window.innerWidth / 2) * 0.01;
+
+                    const moveY = (mouseY - window.innerHeight / 2) * 0.01;
+
+                    hero.style.transform = `translate(${moveX}px, ${moveY}px)`;
+
+                }
+
+            }
+
+        });
+
+
+
+        // 키보드 접근성 향상
+
+        document.addEventListener('keydown', function(e) {
+
+            // ESC 키로 팝업 닫기
+
+            if (e.key === 'Escape') {
+
+                const popup = document.getElementById('successPopup');
+
+                if (popup.style.display === 'flex') {
+
+                    closePopup();
+
+                }
+
+                
+
+                // 드롭다운 닫기
+
+                const dropdownOptions = document.getElementById('businessOptions');
+
+                if (dropdownOptions.classList.contains('show')) {
+
+                    dropdownOptions.classList.remove('show');
+
+                }
+
+            }
+
+            
+
+            // Enter 키로 버튼 실행
+
+            if (e.key === 'Enter' && e.target.classList.contains('form-option')) {
+
+                e.target.click();
+
+            }
+
+        });
+
+
+
+        // 폼 유효성 검사 강화
+
+        function validateStep(step) {
+
+            switch(step) {
+
+                case 1:
+
+                    return formData.ownerType !== undefined;
+
+                case 2:
+
+                    return formData.business !== undefined;
+
+                case 3:
+
+                    return formData.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
+
+                case 4:
+
+                    return formData.phone && formData.phone.replace(/-/g, '').length === 11;
+
+                case 5:
+
+                    return formData.currentSituation !== undefined;
+
+                default:
+
+                    return true;
+
+            }
+
+        }
+
+
+
+        // 성능 최적화: 디바운스 함수
+
+        function debounce(func, wait) {
+
+            let timeout;
+
+            return function executedFunction(...args) {
+
+                const later = () => {
+
+                    clearTimeout(timeout);
+
+                    func(...args);
+
+                };
+
+                clearTimeout(timeout);
+
+                timeout = setTimeout(later, wait);
+
+            };
+
+        }
+
+
+
+        // 리사이즈 이벤트 최적화
+
+        const handleResize = debounce(() => {
+
+            // 모바일에서 뷰포트 변경 시 레이아웃 재조정
+
+            if (window.innerWidth <= 768) {
+
+                document.body.style.fontSize = '14px';
+
+            } else {
+
+                document.body.style.fontSize = '16px';
+
+            }
+
+        }, 250);
+
+
+
+        window.addEventListener('resize', handleResize);
+
+    </script>
+
+
+
+    <!-- Google Apps Script 연동을 위한 추가 스크립트 -->
+
+    <script>
+
+        /*
+
+        구글 스프레드시트 연동을 위한 Google Apps Script 코드:
+
+        
+
+        1. Google Apps Script (script.google.com)에서 새 프로젝트 생성
+
+        2. 아래 코드를 붙여넣기:
+
+        
+
+        function doPost(e) {
+
+            const sheet = SpreadsheetApp.openById('YOUR_SPREADSHEET_ID').getActiveSheet();
+
+            const data = JSON.parse(e.postData.contents);
+
+            
+
+            // 헤더 설정 (첫 번째 실행 시)
+
+            if (sheet.getLastRow() === 0) {
+
+                sheet.appendRow([
+
+                    '신청일시',
+
+                    '사업자 유형',
+
+                    '업종',
+
+                    '이메일',
+
+                    '연락처',
+
+                    '현재 상황',
+
+                    '궁금한 점'
+
+                ]);
+
+            }
+
+            
+
+            // 데이터 추가
+
+            sheet.appendRow([
+
+                new Date(data.timestamp),
+
+                data.ownerType || '',
+
+                data.business || '',
+
+                data.email || '',
+
+                data.phone || '',
+
+                data.currentSituation || '',
+
+                data.question || ''
+
+            ]);
+
+            
+
+            return ContentService.createTextOutput('Success');
+
+        }
+
+        
+
+        3. 웹 앱으로 배포 (실행 대상: 모든 사용자, 액세스 권한: 익명 사용자 포함)
+
+        4. 배포 URL을 위의 GOOGLE_SCRIPT_URL 변수에 입력
+
+        5. 스프레드시트 ID를 YOUR_SPREADSHEET_ID에 입력
+
+        
+
+        이미지 URL 교체 방법:
+
+        - IMAGE_URL_1: 히어로 섹션 메인 키오스크 이미지
+
+        - IMAGE_URL_2: 스터디카페 키오스크 사용 이미지
+
+        - IMAGE_URL_3: 헬스장 키오스크 사용 이미지
+
+        - IMAGE_URL_4: 독서실 키오스크 사용 이미지
+
+        - IMAGE_URL_5: 기존 키오스크 문제점 이미지
+
+        - IMAGE_URL_6: 고스카 키오스크 장점 이미지
+
+        - IMAGE_URL_7: 절감 효과 차트/그래프 이미지
+
+        - IMAGE_URL_8: 점주 만족도 관련 이미지
+
+        */
+
+    </script>
+
+</body>
+
+</html>
